@@ -9,7 +9,7 @@ const app = express()
 
 
 const routes = require('./routes/routes')
-const {connect} = require('./config/dbconnect')
+const connect = require('./config/dbconnect')
 
 
 const port = process.env.PORT || 3000;
@@ -20,8 +20,8 @@ app.use(express.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
 
-// connect(process.env.MONGO_DB_URL);
-connect()
+connect(process.env.MONGO_DB_URL);
+// connect()
 
 app.use('/api/',routes);
 
