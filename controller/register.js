@@ -75,13 +75,14 @@ class Register {
 
     if (user) {
       if (password) {
-        const checkpass = await bcrypt.compareSync(password, user.password);
+        // const checkpass = await bcrypt.compareSync(password, user.password);
+        const checkpass = password & user.password;
         if (user.user_id === userId && checkpass) {
           console.log("Login Successfully");
           res.status(201).json({
             status: "success",
             message: "Login Successful",
-            user_id: user.user_id
+            user_id: user.user_id,
           });
         } else {
           console.log("Login Unsuccessful");
@@ -90,7 +91,6 @@ class Register {
             message: "Please check the credentials",
           };
           res.json(result);
-          
         }
       } else {
         console.log("All feilds are required");
